@@ -43,7 +43,7 @@ function SignUpPage() {
     <Page>
       <Heading>회원 가입</Heading>
 
-      <section className="flex flex-col items-center gap-y-4 max-w-lg py-10 mx-auto w-full border drop-shadow-md">
+      <section className="flex flex-col items-center gap-y-10 max-w-lg py-10 mx-auto w-full border drop-shadow-sm">
         <Input
           label="이메일"
           autoFocus
@@ -66,8 +66,6 @@ function SignUpPage() {
           onChange={(e) => setPasswordConfirm(e.target.value)}
           disabled={isPending}
         />
-
-        <div className="mt-2" />
 
         <Button color="sky" onClick={handleClickSignUp} disabled={isPending}>
           회원가입하기

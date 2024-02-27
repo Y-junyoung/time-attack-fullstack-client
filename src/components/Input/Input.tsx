@@ -8,8 +8,8 @@ function Input({ label, ...props }: InputProps) {
   const id = useId();
 
   return (
-    <div className="grid gap-y-2 w-[400px]">
-      <label htmlFor={id} className="text-lg font-medium text-gray-700">
+    <div className="flex items-center gap-x-10 w-[400px]">
+      <label htmlFor={id} className="text-lg w-[3rem] font-bold text-gray-700">
         {label}
       </label>
       <input

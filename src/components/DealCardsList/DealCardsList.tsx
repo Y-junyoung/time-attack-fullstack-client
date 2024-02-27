@@ -9,7 +9,7 @@ function DealCardsList({ deals }: DealCardsListProps) {
   return (
     <ul className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-8 gap-y-12">
       {deals.map((deal) => (
-        <li key={deal.id}>
+        <li key={deal.createdAt}>
           <DealCard deal={deal} />
         </li>
       ))}

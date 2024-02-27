@@ -1,6 +1,6 @@
 import { Response } from "@/types/Response.type";
 import { client } from "..";
-import { GetDealData, GetDealsData } from "./deal.data";
+import { GetDealData, GetDealsData, PostDealDTO } from "./deal.data";
 
 async function getDeals() {
   const response = await client.get<Response<GetDealsData>>("/deals");
@@ -22,9 +22,14 @@ async function getDeal(dealId: number) {
   return deal;
 }
 
+async function postDeal(dto: PostDealDTO) {
+  await client.post<Response>("/deals/create", dto);
+}
+
 const dealsAPI = {
   getDeals,
   getDeal,
+  postDeal,
 };
 
 export default dealsAPI;

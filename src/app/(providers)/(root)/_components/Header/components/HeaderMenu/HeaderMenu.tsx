@@ -25,6 +25,12 @@ function HeaderMenu() {
     <div className="ml-auto flex items-center gap-x-4">
       {auth.isLoggedIn ? (
         <>
+          <Link
+            href="/deals/create"
+            className="text-[15px] p-1 font-medium text-gray-600 hover:text-black hover:bg-gray-200 rounded-sm transition-all"
+          >
+            판매하기
+          </Link>
           <button
             onClick={handleClickLogOut}
             className="text-[15px] p-1 font-medium text-gray-600 hover:text-black hover:bg-gray-200 rounded-sm transition-all"

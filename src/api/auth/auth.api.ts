@@ -3,21 +3,28 @@ import { client } from "..";
 import { LogInDto, SignUpDto } from "./auth.dto";
 
 async function signUp(dto: SignUpDto) {
-  await client.post<Response>("/auth/sign-up", dto);
+  const response = await client.post<Response>("/auth/sign-up", dto);
+  const data = response.data;
+  const accessToken = data.result;
+
+  client.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+
+  return accessToken;
 }
 
 async function logIn(dto: LogInDto) {
-  await client.post<Response>("/auth/log-in", dto);
-}
+  const response = await client.post<Response>("/auth/log-in", dto);
+  const data = response.data;
+  const accessToken = data.result;
 
-// async function logOut() {
-//   await client.post<Response>("/auth/users/log-out");
-// }
+  client.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+
+  return accessToken;
+}
 
 const authAPI = {
   signUp,
   logIn,
-  //   logOut,
 };
 
 export default authAPI;
