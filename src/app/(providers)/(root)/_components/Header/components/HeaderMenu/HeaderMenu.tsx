@@ -3,7 +3,6 @@
 import api from "@/api";
 import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
-import { HeaderButtonStyle } from "@/styles/styles";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import LogInModal from "../LogInModal";
@@ -30,17 +29,23 @@ function HeaderMenu() {
         <>
           <button
             onClick={handleClickLogOut}
-            className={`${HeaderButtonStyle}`}
+            className="text-[15px] p-1 font-medium text-gray-600 hover:text-black hover:bg-gray-200 rounded-sm transition-all"
           >
             로그아웃
           </button>
         </>
       ) : (
         <>
-          <Link href="/sign-up" className={`${HeaderButtonStyle}`}>
+          <Link
+            href="/sign-up"
+            className="text-[15px] p-1 font-medium text-gray-600 hover:text-black hover:bg-gray-200 rounded-sm transition-all"
+          >
             회원가입
           </Link>
-          <button onClick={handleClickLogIn} className={`${HeaderButtonStyle}`}>
+          <button
+            onClick={handleClickLogIn}
+            className="text-[15px] p-1 font-medium text-gray-600 hover:text-black hover:bg-gray-200 rounded-sm transition-all"
+          >
             로그인
           </button>
         </>

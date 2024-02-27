@@ -7,9 +7,8 @@ import Modal from "@/components/Modal";
 import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
 import useMutationLogIn from "@/react-query/auth/useMutationLogIn";
-import { FormStyle } from "@/styles/styles";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { KeyboardEventHandler, useState } from "react";
 
 function LogInModal() {
   const [email, setEmail] = useState("");
@@ -34,11 +33,17 @@ function LogInModal() {
     }
   };
 
+  const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.key === "Enter") {
+      handleClickLogIn();
+    }
+  };
+
   return (
     <Modal>
       <Heading>로그인</Heading>
 
-      <section className={`${FormStyle}`}>
+      <section className="flex flex-col items-center gap-y-4 max-w-lg py-10 mx-auto w-full border drop-shadow-md">
         <Input
           label="이메일"
           autoFocus
@@ -52,6 +57,7 @@ function LogInModal() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={handleKeyDown}
           disabled={isPending}
         />
 
