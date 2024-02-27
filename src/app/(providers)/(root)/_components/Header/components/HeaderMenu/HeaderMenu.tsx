@@ -1,6 +1,5 @@
 "use client";
 
-import api from "@/api";
 import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
 import Link from "next/link";
@@ -12,8 +11,7 @@ function HeaderMenu() {
   const router = useRouter();
   const modal = useModal();
 
-  const handleClickLogOut = async () => {
-    await api.auth.logOut();
+  const handleClickLogOut = () => {
     auth.setIsLoggedIn(false);
 
     router.push("/");
@@ -37,7 +35,7 @@ function HeaderMenu() {
       ) : (
         <>
           <Link
-            href="/sign-up"
+            href="/auth/sign-up"
             className="text-[15px] p-1 font-medium text-gray-600 hover:text-black hover:bg-gray-200 rounded-sm transition-all"
           >
             회원가입

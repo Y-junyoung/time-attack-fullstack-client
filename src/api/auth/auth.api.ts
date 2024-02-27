@@ -3,21 +3,21 @@ import { client } from "..";
 import { LogInDto, SignUpDto } from "./auth.dto";
 
 async function signUp(dto: SignUpDto) {
-  await client.post<Response>("/auth/users/sign-up", dto);
+  await client.post<Response>("/auth/sign-up", dto);
 }
 
 async function logIn(dto: LogInDto) {
-  await client.post<Response>("/auth/users/log-in", dto);
+  await client.post<Response>("/auth/log-in", dto);
 }
 
-async function logOut() {
-  await client.post<Response>("/auth/users/log-out");
-}
+// async function logOut() {
+//   await client.post<Response>("/auth/users/log-out");
+// }
 
 const authAPI = {
   signUp,
   logIn,
-  logOut,
+  //   logOut,
 };
 
 export default authAPI;
