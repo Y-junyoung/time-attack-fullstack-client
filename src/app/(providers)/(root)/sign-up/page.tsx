@@ -5,6 +5,7 @@ import Heading from "@/components/Heading";
 import Input from "@/components/Input";
 import Page from "@/components/Page";
 import { useAuth } from "@/contexts/auth.context";
+import { FormStyle } from "@/styles/styles";
 import { useState } from "react";
 
 function SignUpPage() {
@@ -20,7 +21,7 @@ function SignUpPage() {
     <Page>
       <Heading>회원 가입</Heading>
 
-      <section className="flex flex-col items-center gap-y-4 max-w-lg py-10 mx-auto w-full border drop-shadow-md">
+      <section className={`${FormStyle}`}>
         <Input
           label="이메일"
           autoFocus

@@ -1,21 +1,27 @@
 "use client";
 
+import api from "@/api";
 import { useAuth } from "@/contexts/auth.context";
+import { useModal } from "@/contexts/modal.context";
 import { HeaderButtonStyle } from "@/styles/styles";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import LogInModal from "../LogInModal";
 
 function HeaderMenu() {
   const auth = useAuth();
-  //   const router = useRouter();
+  const router = useRouter();
+  const modal = useModal();
 
-  const handleClickLogOut = () => {
+  const handleClickLogOut = async () => {
+    await api.auth.logOut();
     auth.setIsLoggedIn(false);
-    // router.push("/");
+
+    router.push("/");
   };
 
   const handleClickLogIn = () => {
-    //로그인 구현
-    console.log("hi");
+    modal.open(<LogInModal />);
   };
 
   return (
