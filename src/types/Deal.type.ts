@@ -9,6 +9,7 @@ export type Deal = {
   imgSrc: string;
   sellerId: string;
   interested: Interest;
+  views: number;
   createdAt: number;
   updatedAt: number;
   _count: {

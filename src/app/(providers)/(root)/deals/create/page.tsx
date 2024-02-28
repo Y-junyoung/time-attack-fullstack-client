@@ -5,6 +5,7 @@ import Heading from "@/components/Heading";
 import Input from "@/components/Input";
 import Page from "@/components/Page";
 import useMutationPostDeal from "@/react-query/auth/useMutationCreateDeal";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 function PostDealPage() {
@@ -13,10 +14,12 @@ function PostDealPage() {
   const [content, setContent] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
+  const router = useRouter();
 
   const handleClickPostDeal = async () => {
     try {
       await postDeal({ title, content, location, price: parseInt(price) });
+      router.push("/");
     } catch (e) {
       alert("판매 글 작성에 실패하였습니다.");
     }

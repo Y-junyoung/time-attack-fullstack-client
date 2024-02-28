@@ -8,7 +8,7 @@ interface DealCardProps {
 
 function DealCard({ deal }: DealCardProps) {
   return (
-    <Link href="/" className="relative flex flex-col group">
+    <Link href={`/deals/${deal.id}`} className="relative flex flex-col group">
       <div className="aspect-[4/4] relative mb-4 bg-yellow-200">
         <div className="object-cover group-hover:scale-105 transition-transform ">
           이미지자리
