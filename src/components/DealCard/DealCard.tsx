@@ -3,7 +3,7 @@ import formatPrice from "@/utils/formatPrice.utils";
 import Link from "next/link";
 
 interface DealCardProps {
-  deal: Awaited<ReturnType<typeof api.deals.getDeals>>[number];
+  deal: Awaited<ReturnType<typeof api.deal.getDeals>>[number];
 }
 
 function DealCard({ deal }: DealCardProps) {

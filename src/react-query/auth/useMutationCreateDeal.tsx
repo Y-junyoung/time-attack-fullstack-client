@@ -4,6 +4,6 @@ import { useMutation } from "@tanstack/react-query";
 
 export default function useMutationPostDeal() {
   return useMutation<unknown, unknown, PostDealDTO>({
-    mutationFn: api.deals.postDeal,
+    mutationFn: api.deal.postDeal,
   });
 }

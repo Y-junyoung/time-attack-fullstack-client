@@ -1,6 +1,7 @@
 import axios from "axios";
 import authAPI from "./auth/auth.api";
-import dealsAPI from "./deal/deal.api";
+import dealAPI from "./deal/deal.api";
+import interestAPI from "./interest/interest.api";
 import usersAPI from "./users/users.api";
 
 export const client = axios.create({
@@ -10,8 +11,9 @@ export const client = axios.create({
 
 const api = {
   auth: authAPI,
-  deals: dealsAPI,
-  users: usersAPI,
+  deal: dealAPI,
+  user: usersAPI,
+  interest: interestAPI,
 };
 
 export default api;

@@ -5,7 +5,7 @@ import DealButtons from "./_components/DealButtons";
 
 async function DealDetailPage(props: { params: { dealId: number } }) {
   const dealId = props.params.dealId;
-  const deal = await api.deals.getDeal(dealId);
+  const deal = await api.deal.getDeal(dealId);
 
   // 현재 시간과 deal.createdAt 사이의 시간 차이를 계산
   const dealCreatedAt = new Date(deal.createdAt);

@@ -4,7 +4,7 @@ import Heading from "@/components/Heading";
 import Page from "@/components/Page";
 
 async function HomePage() {
-  const deals = await api.deals.getDeals();
+  const deals = await api.deal.getDeals();
   return (
     <Page fullWidth>
       <Heading>전체 판매글</Heading>
