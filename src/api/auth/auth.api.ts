@@ -3,32 +3,33 @@ import { client } from "..";
 import { LogInDto, SignUpDto } from "./auth.dto";
 
 async function signUp(dto: SignUpDto) {
-  const response = await client.post<Response>("/auth/sign-up", dto);
-  const data = response.data;
-  const accessToken = data.result;
-
-  client.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-
-  localStorage.setItem("accessToken", String(accessToken));
-
-  return accessToken;
+  return await client.post<Response>("/auth/sign-up", dto);
 }
 
 async function logIn(dto: LogInDto) {
-  const response = await client.post<Response>("/auth/log-in", dto);
+  return await client.post<Response>("/auth/log-in", dto);
+}
+
+async function logOut() {
+  return await client.delete<Response>("/auth/log-out");
+}
+
+async function refreshToken() {
+  const response = await client.get<Response<boolean>>(`/auth/refresh-token`);
+
   const data = response.data;
-  const accessToken = data.result;
+  if (!data.success) throw new Error(data.error.message);
 
-  client.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+  const isAccessTokenRefreshed = data.result;
 
-  localStorage.setItem("accessToken", String(accessToken));
-
-  return accessToken;
+  return isAccessTokenRefreshed;
 }
 
 const authAPI = {
   signUp,
   logIn,
+  logOut,
+  refreshToken,
 };
 
 export default authAPI;

@@ -4,20 +4,18 @@ import Button from "@/components/Button";
 import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
 import useQueryGetUser from "@/react-query/user/useQueryGetUser";
-import { Deal } from "@/types/Deal.type";
 import Link from "next/link";
 // import useMutationAddInterestedDeal from "@/react-query/interest/useMutationAddInterestedDeal";
 // import useMutationRemoveInterestedDeal from "@/react-query/interest/useMutationRemoveInterestedDeal";
 // import useQueryGetInterests from "@/react-query/interest/useQueryGetInterests";
 
-function DealButtons(dealId: Pick<Deal, "id">) {
+function DealButtons() {
   const { isLoggedIn } = useAuth();
   const modal = useModal();
   // const { data: deal } = useQueryGetDeals(isLoggedIn);
   const { data: user } = useQueryGetUser(isLoggedIn);
 
   const isSeller = isLoggedIn && user?.email;
-  console.log(dealId);
 
   console.log("userEmail: ", user?.email);
 
