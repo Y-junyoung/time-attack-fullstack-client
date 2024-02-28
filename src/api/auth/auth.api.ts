@@ -9,6 +9,8 @@ async function signUp(dto: SignUpDto) {
 
   client.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
+  localStorage.setItem("accessToken", String(accessToken));
+
   return accessToken;
 }
 
@@ -18,6 +20,8 @@ async function logIn(dto: LogInDto) {
   const accessToken = data.result;
 
   client.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+
+  localStorage.setItem("accessToken", String(accessToken));
 
   return accessToken;
 }

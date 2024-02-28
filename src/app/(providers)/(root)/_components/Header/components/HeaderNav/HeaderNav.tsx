@@ -10,7 +10,7 @@ function HeaderNav() {
         구입하기
       </Link>
       <Link
-        href="/"
+        href="/deals/create"
         className="text-[15px] p-1 font-medium text-gray-600 hover:text-black hover:bg-gray-200 rounded-sm transition-all"
       >
         판매하기

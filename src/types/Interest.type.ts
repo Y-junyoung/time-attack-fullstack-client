@@ -2,13 +2,13 @@ import { Deal } from "./Deal.type";
 
 export type InterestedDeal = {
   id: number;
-  interestId: string;
+  userId: string;
   dealId: number;
   deal: Deal;
   createdAt: number;
 };
 
 export type Interests = {
-  userId: number;
+  userId: string;
   interestedDeals: InterestedDeal[];
 };

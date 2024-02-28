@@ -28,6 +28,7 @@ function LogInModal() {
       auth.setIsLoggedIn(true);
       router.push("/");
       modal.close();
+      localStorage.setItem("accessToken", accessToken);
     } catch (e) {
       alert("로그인에 실패하였습니다.");
     }

@@ -4,9 +4,11 @@ import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import Input from "@/components/Input";
 import Page from "@/components/Page";
-import useMutationPostDeal from "@/react-query/auth/useMutationCreateDeal";
+import useMutationPostDeal from "@/react-query/deal/useMutationPostDeal";
+import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { join } from "path";
+import { ChangeEventHandler, useState } from "react";
 
 function PostDealPage() {
   const { mutateAsync: postDeal, isPending } = useMutationPostDeal();
@@ -14,12 +16,42 @@ function PostDealPage() {
   const [content, setContent] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
+  const [imgSrc, setImgSrc] = useState("");
   const router = useRouter();
+
+  const handleChangeUploadImage: ChangeEventHandler<HTMLInputElement> = async (
+    e
+  ) => {
+    const image = e.target.files?.[0];
+    if (!image) return alert("파일을 선택해주세요");
+
+    const formData = new FormData();
+    formData.append("image", image);
+    const response = await axios.post(
+      "http://localhost:5050/deals/image",
+      formData
+    );
+    const baseUrl = "http://localhost:5050/images";
+
+    const data = response.data;
+    const result = data.result;
+
+    const imageUrl = join(baseUrl, result);
+
+    return setImgSrc(imageUrl);
+  };
 
   const handleClickPostDeal = async () => {
     try {
-      await postDeal({ title, content, location, price: parseInt(price) });
-      router.push("/");
+      await postDeal({
+        title,
+        content,
+        location,
+        price: parseInt(price),
+        imgSrc,
+      });
+      router.refresh();
+      router.replace("/");
     } catch (e) {
       alert("판매 글 작성에 실패하였습니다.");
     }
@@ -68,8 +100,17 @@ function PostDealPage() {
           onChange={(e) => setPrice(e.target.value)}
           disabled={isPending}
         />
+        <div>
+          <div>이미지 업로드</div>
+          <input type="file" onChange={handleChangeUploadImage} />
+        </div>
 
-        <Button color="sky" onClick={handleClickPostDeal} disabled={isPending}>
+        <Button
+          color="sky"
+          onClick={handleClickPostDeal}
+          // onSubmit={handleClickPostDeal}
+          disabled={isPending}
+        >
           판매글 작성하기
         </Button>
       </section>

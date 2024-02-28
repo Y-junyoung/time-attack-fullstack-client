@@ -1,6 +1,8 @@
 import api from "@/api";
 import Page from "@/components/Page";
 import formatPrice from "@/utils/formatPrice.utils";
+import Image from "next/image";
+import DealButtons from "./_components/DealButtons";
 
 async function DealDetailPage(props: { params: { dealId: number } }) {
   const dealId = props.params.dealId;
@@ -15,8 +17,13 @@ async function DealDetailPage(props: { params: { dealId: number } }) {
   return (
     <Page>
       <section className="flex flex-col gap-x-6">
-        <div className="relative aspect-[5/4] bg-yellow-300 w-full">
-          <div>이미지 자리</div>
+        <div className="relative aspect-[5/4]">
+          <Image
+            alt={deal.title}
+            src={`${deal.imgSrc}`}
+            fill
+            className="object-cover"
+          />
         </div>
         <div className="flex border-b p-2.5  pb-6 my-5">
           <div className="bg-green-500 w-16 h-16 rounded-full"></div>
@@ -36,7 +43,7 @@ async function DealDetailPage(props: { params: { dealId: number } }) {
           </div>
         </div>
         <div>
-          <DealButtons />
+          <DealButtons dealId={dealId} />
         </div>
       </section>
     </Page>
