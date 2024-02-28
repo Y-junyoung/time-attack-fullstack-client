@@ -1,4 +1,4 @@
-import { Interest } from "./Interest.type";
+import { InterestedDeal } from "./Interest.type";
 
 export type Deal = {
   id: number;
@@ -8,7 +8,7 @@ export type Deal = {
   price: number;
   imgSrc: string;
   sellerId: string;
-  interested: Interest;
+  interested: InterestedDeal;
   views: number;
   createdAt: number;
   updatedAt: number;

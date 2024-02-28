@@ -1,12 +1,32 @@
 import { Response } from "@/types/Response.type";
 import { client } from "..";
+import {
+  addInterestedDealData,
+  removeInterestedDealData,
+} from "./interest.data";
 
 async function addInterestedDeal(dealId: number) {
-  return await client.post<Response>(`/interests/deals/${dealId}`);
+  const response = await client.post<Response<addInterestedDealData>>(
+    `/interests/deals/${dealId}`
+  );
+  const data = response.data;
+  if (!data.success) throw new Error(data.error.message);
+
+  const interestedDeal = data.result;
+
+  return interestedDeal;
 }
 
 async function removeInterestedDeal(dealId: number) {
-  return await client.delete<Response>(`/interests/deals/${dealId}`);
+  const response = await client.delete<Response<removeInterestedDealData>>(
+    `/interests/deals/${dealId}`
+  );
+  const data = response.data;
+  if (!data.success) throw new Error(data.error.message);
+
+  const interestedDeal = data.result;
+
+  return interestedDeal;
 }
 
 const interestAPI = {

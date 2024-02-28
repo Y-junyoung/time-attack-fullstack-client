@@ -1,6 +1,14 @@
-export type Interest = {
+import { Deal } from "./Deal.type";
+
+export type InterestedDeal = {
   id: number;
-  userId: string;
+  interestId: string;
   dealId: number;
+  deal: Deal;
   createdAt: number;
+};
+
+export type Interests = {
+  userId: number;
+  interestedDeals: InterestedDeal[];
 };

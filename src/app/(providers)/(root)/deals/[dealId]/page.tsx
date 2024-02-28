@@ -1,7 +1,6 @@
 import api from "@/api";
 import Page from "@/components/Page";
 import formatPrice from "@/utils/formatPrice.utils";
-import DealButtons from "./_components/DealButtons";
 
 async function DealDetailPage(props: { params: { dealId: number } }) {
   const dealId = props.params.dealId;

@@ -1,15 +1,4 @@
-import { Deal } from "@/types/Deal.type";
+import { InterestedDeal } from "@/types/Interest.type";
 
-export type GetDealsData = Deal[];
-
-export type GetDealData = Deal;
-
-export type PostDealDTO = {
-  title: string;
-  content: string;
-  location: string;
-  price: number;
-  imgSrc?: string;
-};
-
-export type UpdateDealDTO = PostDealDTO;
+export type addInterestedDealData = InterestedDeal;
+export type removeInterestedDealData = InterestedDeal;
