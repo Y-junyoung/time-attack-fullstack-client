@@ -4,14 +4,14 @@ import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import Input from "@/components/Input";
 import Page from "@/components/Page";
-import useMutationPostDeal from "@/react-query/deal/useMutationPostDeal";
+import useMutationUpdateDeal from "@/react-query/deal/useMutationUpdateDeal";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { join } from "path";
 import { ChangeEventHandler, useState } from "react";
 
-function PostDealPage() {
-  const { mutateAsync: postDeal, isPending } = useMutationPostDeal();
+function EditPage(props: { params: { dealId: number } }) {
+  const { isPending, mutateAsync: updateDeal } = useMutationUpdateDeal();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [location, setLocation] = useState("");
@@ -19,11 +19,13 @@ function PostDealPage() {
   const [imgSrc, setImgSrc] = useState("");
   const router = useRouter();
 
+  const dealId: number = props.params.dealId;
+
   const handleChangeUploadImage: ChangeEventHandler<HTMLInputElement> = async (
     e
   ) => {
     const image = e.target.files?.[0];
-    if (!image) return alert("파일을 선택해주세요");
+    if (!image) return alert("파일을 선택해주세요.");
 
     const formData = new FormData();
     formData.append("image", image);
@@ -37,29 +39,33 @@ function PostDealPage() {
     const result = data.result;
 
     const imageUrl = join(baseUrl, result);
+    console.log("imageUrl: ", imageUrl);
 
     return setImgSrc(imageUrl);
   };
 
-  const handleClickPostDeal = async () => {
+  const handleClickUpdateDeal = async () => {
+    console.log("imgSrc: ", imgSrc);
     try {
-      await postDeal({
-        title,
-        content,
-        location,
-        price: parseInt(price),
-        imgSrc,
+      await updateDeal({
+        dto: {
+          title,
+          content,
+          location,
+          price: parseInt(price),
+          imgSrc,
+        },
+        dealId,
       });
-
       router.replace("/");
     } catch (e) {
-      alert("판매 글 작성에 실패하였습니다.");
+      alert("판매 글 수정에 실패하였습니다.");
     }
   };
 
   return (
     <Page>
-      <Heading>판매 글 작성</Heading>
+      <Heading>판매 글 수정</Heading>
 
       <section className="flex flex-col items-center gap-y-10 max-w-lg py-10 mx-auto w-full border drop-shadow-sm">
         <Input
@@ -115,12 +121,16 @@ function PostDealPage() {
           />
         </div>
 
-        <Button color="sky" onClick={handleClickPostDeal} disabled={isPending}>
-          판매글 작성하기
+        <Button
+          color="sky"
+          onClick={handleClickUpdateDeal}
+          disabled={isPending}
+        >
+          판매글 수정하기
         </Button>
       </section>
     </Page>
   );
 }
 
-export default PostDealPage;
+export default EditPage;

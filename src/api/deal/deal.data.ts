@@ -9,7 +9,13 @@ export type PostDealDTO = {
   content: string;
   location: string;
   price: number;
-  imgSrc?: string;
+  imgSrc: string;
 };
 
-export type UpdateDealDTO = PostDealDTO;
+export type UpdateDealDTO = {
+  title: string;
+  content: string;
+  location: string;
+  price: number;
+  imgSrc: string;
+};

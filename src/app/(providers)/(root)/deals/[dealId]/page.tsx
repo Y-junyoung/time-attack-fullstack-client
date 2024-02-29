@@ -43,7 +43,7 @@ async function DealDetailPage(props: { params: { dealId: number } }) {
           </div>
         </div>
         <div>
-          <DealButtons />
+          <DealButtons sellerId={deal.sellerId} dealId={deal.id} />
         </div>
       </section>
     </Page>
