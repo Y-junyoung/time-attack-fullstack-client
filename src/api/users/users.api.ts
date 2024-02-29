@@ -10,9 +10,9 @@ async function getWrittenDeals() {
   const data = response.data;
   if (!data.success) throw new Error(data.error.message);
 
-  const writtenDeals = data.result;
+  const result = data.result;
 
-  return writtenDeals;
+  return result;
 }
 
 async function getInterests() {

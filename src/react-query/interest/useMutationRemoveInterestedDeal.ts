@@ -7,7 +7,6 @@ export default function useMutationRemoveInterestedDeal() {
 
   return useMutation({
     mutationFn,
-    onSuccess: () =>
-      queryClient.invalidateQueries({ exact: true, queryKey: ["interest"] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["interest"] }),
   });
 }
