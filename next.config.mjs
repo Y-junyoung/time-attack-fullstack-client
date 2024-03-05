@@ -2,7 +2,9 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ["localhost"],
+    domains: [
+      "port-0-time-attack-fullstack-server-17xco2lltdolap1.sel5.cloudtype.app",
+    ],
   },
 };
 

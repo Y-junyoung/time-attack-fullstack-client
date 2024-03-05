@@ -5,7 +5,8 @@ import interestAPI from "./interest/interest.api";
 import usersAPI from "./users/users.api";
 
 export const client = axios.create({
-  baseURL: "http://localhost:5050",
+  baseURL:
+    "https://port-0-time-attack-fullstack-server-17xco2lltdolap1.sel5.cloudtype.app",
   withCredentials: true,
 });
 

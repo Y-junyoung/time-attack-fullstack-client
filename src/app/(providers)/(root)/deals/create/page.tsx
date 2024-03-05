@@ -28,10 +28,11 @@ function PostDealPage() {
     const formData = new FormData();
     formData.append("image", image);
     const response = await axios.post(
-      "http://localhost:5050/deals/image",
+      "https://port-0-time-attack-fullstack-server-17xco2lltdolap1.sel5.cloudtype.app/deals/image",
       formData
     );
-    const baseUrl = "http://localhost:5050/images";
+    const baseUrl =
+      "https://port-0-time-attack-fullstack-server-17xco2lltdolap1.sel5.cloudtype.app/images";
 
     const data = response.data;
     const result = data.result;
