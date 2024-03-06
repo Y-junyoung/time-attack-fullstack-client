@@ -7,7 +7,6 @@ import Page from "@/components/Page";
 import useMutationPostDeal from "@/react-query/deal/useMutationPostDeal";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { join } from "path";
 import { ChangeEventHandler, useState } from "react";
 
 function PostDealPage() {
@@ -37,7 +36,7 @@ function PostDealPage() {
     const data = response.data;
     const result = data.result;
 
-    const imageUrl = join(baseUrl, result);
+    const imageUrl = baseUrl + result;
 
     return setImgSrc(imageUrl);
   };
